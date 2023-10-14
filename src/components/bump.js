@@ -53,6 +53,7 @@ function Bump() {
         autoPlay
         loop
         muted
+        playsInline
       >
         <source src={`${CDN_URL}/videos/static-comp.mp4`} type="video/mp4" />
       </video>
@@ -62,6 +63,7 @@ function Bump() {
           id={`bump-${i}`}
           className={`bump-video ${bump === i + 1 ? "show" : ""}`}
           muted
+          playsInline
         >
           <source
             src={`${CDN_URL}/videos/bump-${i + 1}-comp.mp4`}
