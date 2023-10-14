@@ -3,15 +3,15 @@
 .nav {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
   margin: auto;
   padding-bottom: 10vh;
   color: $color-white;
+  width: 48vw;
 
   @include for-phone {
     padding-bottom: 20vh;
-    justify-content: center;
-    margin-left: -0.8rem;
-    max-width: 100%;
+    justify-content: space-between;
+    width: 92%;
   }
 }
