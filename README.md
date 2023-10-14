@@ -4,7 +4,7 @@
 
 > “I have been trusted by global brands to deliver content services that embody out of the box thinking & practices. I do this all while pursuing independent media projects in comedy, film, & music. My works continually challenge creative molds that push my limits & abilities as an artist.”
 
-This site is live at [MNDLSSPictures.com](https://www.mndlsspictures.com/).
+While in development, this site can be previewed on [Netlify](https://mndlss.netlify.app).
 
 ## Available Scripts
 
