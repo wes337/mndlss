@@ -1,0 +1,43 @@
+@import "../styles/variables";
+
+.bump {
+  mix-blend-mode: multiply;
+
+  .bump-static {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    opacity: 0;
+    width: 45vw;
+    height: 100%;
+    transform: translate(61%);
+    mix-blend-mode: difference;
+
+    @include for-phone {
+      width: 90%;
+      transform: translate(5%);
+    }
+
+    &.show {
+      opacity: 1;
+    }
+  }
+
+  .bump-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-37.5vw);
+    width: 175%;
+    height: 100%;
+    pointer-events: none;
+    user-select: none;
+    transition: opacity 0.5s ease;
+    opacity: 0;
+
+    &.show {
+      opacity: 1;
+    }
+  }
+}

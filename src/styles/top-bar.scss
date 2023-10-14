@@ -1,0 +1,22 @@
+@import "./variables.scss";
+
+.top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: $navbar-height;
+  padding: 0.6rem 1.4rem;
+  z-index: 1;
+
+  .top-bar-logo {
+    height: 100%;
+
+    img {
+      height: 100%;
+      width: auto;
+    }
+  }
+}

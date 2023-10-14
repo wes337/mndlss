@@ -1,0 +1,28 @@
+$navbar-height: 80px;
+
+$color-white: #ffffff;
+$color-black: #000000;
+$color-light-gray: #dfe1dc;
+
+$cdn-url: "https://mndlss.b-cdn.net";
+
+$screen-size-xxs: 400px;
+$screen-size-xs: 500px;
+$screen-size-sm: 1100px;
+$screen-size-lg: 1900px;
+
+@mixin for-phone {
+  @media screen and (max-width: $screen-size-sm) {
+    @content;
+  }
+}
+
+@mixin for-desktop {
+  @media screen and (min-width: $screen-size-sm) and (min-height: $screen-size-xs) {
+    @content;
+  }
+}
+
+@mixin pseudo-bold {
+  text-shadow: -0.03ex 0 0 currentColor, 0.03ex 0 0 currentColor;
+}
