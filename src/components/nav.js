@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { CDN_URL } from "../constants";
 import "../styles/nav.scss";
 
 function Nav() {
