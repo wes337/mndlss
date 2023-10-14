@@ -1,5 +1,5 @@
-import "../styles/footer.scss";
 import Nav from "./nav";
+import "../styles/footer.scss";
 
 export default function Footer() {
   return (

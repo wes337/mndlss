@@ -6,8 +6,9 @@
   left: 0;
   width: 100%;
   display: flex;
+  justify-content: center;
   align-items: center;
-  height: $navbar-height;
+  height: $top-bar-height;
   padding: 0.6rem 1.4rem;
   z-index: 1;
 

@@ -1,0 +1,82 @@
+@import "./variables.scss";
+
+.nav-link {
+  all: unset;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  font-weight: 400;
+  height: $top-bar-height;
+  font-size: 2.8rem;
+
+  --nav-icon-size: 128px;
+
+  @include for-phone {
+    font-size: 1.2rem;
+    --nav-icon-size: 80px;
+  }
+
+  @include for-large-screens {
+    font-size: 4rem;
+    --nav-icon-size: 148px;
+  }
+
+  .spray {
+    position: absolute;
+    width: 100%;
+    height: 60%;
+    opacity: 0;
+
+    @include for-large-screens {
+      height: 80%;
+    }
+  }
+
+  .nav-link-icon {
+    position: relative;
+    width: var(--nav-icon-size);
+    height: var(--nav-icon-size);
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+
+      &.alt {
+        visibility: hidden;
+      }
+    }
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    @include pseudo-bold;
+
+    .spray {
+      z-index: -1;
+      opacity: 0.5;
+    }
+
+    span {
+      transform: scale(1.2) rotate(-5deg);
+      filter: drop-shadow(1px 1px 0px $color-black);
+    }
+
+    img {
+      &.main {
+        visibility: hidden;
+      }
+
+      &.alt {
+        visibility: visible;
+      }
+    }
+  }
+}
