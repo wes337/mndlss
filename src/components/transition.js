@@ -24,7 +24,7 @@ function Transition() {
 
     const transitionTimeout = setTimeout(() => {
       setShowTransition(false);
-    }, 750);
+    }, 500);
 
     return () => clearTimeout(transitionTimeout);
   }, [showTransition, setShowTransition]);
