@@ -17,7 +17,7 @@ function App() {
     <>
       <Backdrop />
       <TopBar />
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="wait" initial={false}>
         <Routes location={location} key={location.pathname}>
           <Route index element={<Home />} />
           <Route path="/work" element={<Work />} />
