@@ -7,10 +7,19 @@
   margin: auto;
   padding-bottom: 10vh;
   color: $color-white;
-  width: 48vw;
+  width: 60vw;
+  max-width: 900px;
+
+  @include for-large-screens {
+    max-width: 1200px;
+  }
 
   @include for-phone {
     padding-bottom: 20vh;
-    width: 92%;
+    width: 100%;
+  }
+
+  @include for-tablet {
+    padding-bottom: 0;
   }
 }
