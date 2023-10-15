@@ -7,13 +7,6 @@ const transition = (Component) => {
     <>
       <Component />
       <motion.div
-        className="slide-in"
-        initial={{ scaleY: 0 }}
-        animate={{ scaleY: 0 }}
-        exit={{ scaleY: 1 }}
-        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-      />
-      <motion.div
         className="text"
         initial={{
           opacity: 0,
