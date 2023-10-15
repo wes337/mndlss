@@ -22,9 +22,10 @@ function Transition() {
     video.currentTime = 0;
     video.play();
 
+    const timeoutDuration = window.innerWidth <= 500 ? 600 : 500;
     const transitionTimeout = setTimeout(() => {
       setShowTransition(false);
-    }, 500);
+    }, timeoutDuration);
 
     return () => clearTimeout(transitionTimeout);
   }, [showTransition, setShowTransition]);
