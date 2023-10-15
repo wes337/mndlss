@@ -1,3 +1,4 @@
+import transition from "../transition";
 import "../styles/shop.scss";
 
 function Shop() {
@@ -8,4 +9,4 @@ function Shop() {
   );
 }
 
-export default Shop;
+export default transition(Shop);

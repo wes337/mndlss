@@ -1,3 +1,4 @@
+import transition from "../transition";
 import Bump from "../components/bump";
 import "../styles/home.scss";
 
@@ -9,4 +10,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default transition(Home);

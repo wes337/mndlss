@@ -1,3 +1,4 @@
+import transition from "../transition";
 import "../styles/work.scss";
 
 function Work() {
@@ -8,4 +9,4 @@ function Work() {
   );
 }
 
-export default Work;
+export default transition(Work);

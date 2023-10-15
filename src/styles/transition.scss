@@ -1,0 +1,69 @@
+@import "./variables.scss";
+
+.slide-in {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  transform-origin: bottom;
+  background-color: $color-white;
+  z-index: 1;
+}
+
+.slide-out {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: $color-light-gray;
+  transform-origin: top;
+  z-index: 1;
+}
+
+.text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  animation: fadeInOut 1s linear forwards;
+  z-index: 2;
+  pointer-events: none;
+  user-select: none;
+
+  video {
+    width: 100vw;
+    height: 100%;
+    pointer-events: none;
+    user-select: none;
+    object-fit: cover;
+  }
+
+  @keyframes fadeInOut {
+    0% {
+      opacity: 0;
+    }
+    1% {
+      filter: invert(1);
+      opacity: 1;
+    }
+    60% {
+      filter: invert(0);
+      opacity: 1;
+    }
+    80% {
+      filter: invert(1);
+      opacity: 1;
+    }
+    100% {
+      filter: invert(0);
+      opacity: 0;
+    }
+  }
+}

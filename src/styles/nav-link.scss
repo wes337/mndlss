@@ -64,7 +64,8 @@
 
   &:hover,
   &:focus,
-  &:active {
+  &:active,
+  &.active {
     @include pseudo-bold;
 
     .spray {

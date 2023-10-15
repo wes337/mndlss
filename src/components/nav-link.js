@@ -1,17 +1,14 @@
 import { useEffect, useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { CDN_URL } from "../constants";
 import "../styles/nav-link.scss";
 
 function NavLink({ to, mainImg, altImg, label }) {
+  const location = useLocation();
   const sprayInterval = useRef();
   const [spray, setSpray] = useState(1);
 
-  useEffect(() => {
-    return () => {
-      clearInterval(sprayInterval.current);
-    };
-  }, []);
+  const isActive = location.pathname === to;
 
   const startSprayInterval = () => {
     sprayInterval.current = setInterval(() => {
@@ -21,14 +18,27 @@ function NavLink({ to, mainImg, altImg, label }) {
       });
     }, 200);
   };
+
   const stopSprayInterval = () => {
     clearInterval(sprayInterval.current);
     sprayInterval.current = undefined;
   };
 
+  useEffect(() => {
+    return () => {
+      clearInterval(sprayInterval.current);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isActive) {
+      startSprayInterval();
+    }
+  }, [isActive]);
+
   return (
     <Link
-      className="nav-link"
+      className={`nav-link${isActive ? " active" : ""}`}
       to={to}
       onPointerEnter={startSprayInterval}
       onPointerLeave={stopSprayInterval}
