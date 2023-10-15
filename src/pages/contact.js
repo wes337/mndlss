@@ -1,4 +1,3 @@
-import transition from "../transition";
 import "../styles/contact.scss";
 
 function Contact() {
@@ -9,4 +8,4 @@ function Contact() {
   );
 }
 
-export default transition(Contact);
+export default Contact;

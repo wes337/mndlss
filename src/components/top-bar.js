@@ -1,13 +1,29 @@
-import { Link } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useAtom } from "jotai";
+import { showTransitionAtom } from "../state";
 import "../styles/top-bar.scss";
 
 function TopBar() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  // eslint-disable-next-line no-unused-vars
+  const [_, setShowTransition] = useAtom(showTransitionAtom);
+
+  const onClick = () => {
+    if (location.pathname === "/") {
+      return;
+    }
+
+    setShowTransition(true);
+    setTimeout(() => navigate("/"), 250);
+  };
+
   return (
     <div className="top-bar">
       <div className="top-bar-logo">
-        <Link to="/">
+        <button onClick={onClick}>
           <img src={`/images/logo/logo-alt.png`} alt="MNDLSS" />
-        </Link>
+        </button>
       </div>
     </div>
   );

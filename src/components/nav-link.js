@@ -1,12 +1,17 @@
 import { useEffect, useState, useRef } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useAtom } from "jotai";
+import { showTransitionAtom } from "../state";
 import { CDN_URL } from "../constants";
 import "../styles/nav-link.scss";
 
 function NavLink({ to, mainImg, altImg, label }) {
   const location = useLocation();
+  const navigate = useNavigate();
   const sprayInterval = useRef();
   const [spray, setSpray] = useState(1);
+  // eslint-disable-next-line no-unused-vars
+  const [_, setShowTransition] = useAtom(showTransitionAtom);
 
   const isActive = location.pathname === to;
 
@@ -36,10 +41,19 @@ function NavLink({ to, mainImg, altImg, label }) {
     }
   }, [isActive]);
 
+  const onClick = () => {
+    if (isActive) {
+      return;
+    }
+
+    setShowTransition(true);
+    setTimeout(() => navigate(to), 250);
+  };
+
   return (
-    <Link
+    <button
       className={`nav-link${isActive ? " active" : ""}`}
-      to={to}
+      onClick={onClick}
       onPointerEnter={startSprayInterval}
       onPointerLeave={stopSprayInterval}
     >
@@ -62,7 +76,7 @@ function NavLink({ to, mainImg, altImg, label }) {
         />
       </div>
       <span>{label}</span>
-    </Link>
+    </button>
   );
 }
 

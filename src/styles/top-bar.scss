@@ -15,6 +15,18 @@
   .top-bar-logo {
     height: 100%;
 
+    button {
+      all: unset;
+      display: flex;
+      height: 100%;
+      cursor: pointer;
+
+      &:hover,
+      &:focus {
+        filter: invert(1);
+      }
+    }
+
     img {
       height: 100%;
       width: auto;

@@ -1,4 +1,3 @@
-import transition from "../transition";
 import "../styles/more.scss";
 
 function More() {
@@ -9,4 +8,4 @@ function More() {
   );
 }
 
-export default transition(More);
+export default More;
