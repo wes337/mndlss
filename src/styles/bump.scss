@@ -3,6 +3,11 @@
 .bump {
   mix-blend-mode: multiply;
 
+  video {
+    pointer-events: none;
+    user-select: none;
+  }
+
   .bump-static {
     position: fixed;
     top: 0;

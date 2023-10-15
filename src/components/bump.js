@@ -49,7 +49,7 @@ function Bump() {
     <div className="bump">
       <video
         id="static"
-        className={`bump-static ${showStatic ? "show" : ""}`}
+        className={`bump-static${showStatic ? " show" : ""}`}
         autoPlay
         loop
         muted
@@ -61,7 +61,7 @@ function Bump() {
         <video
           key={`bump-${i}`}
           id={`bump-${i}`}
-          className={`bump-video ${bump === i + 1 ? "show" : ""}`}
+          className={`bump-video${bump === i + 1 ? " show" : ""}`}
           muted
           playsInline
         >
