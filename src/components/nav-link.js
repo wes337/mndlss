@@ -10,8 +10,7 @@ function NavLink({ to, mainImg, altImg, label }) {
   const navigate = useNavigate();
   const sprayInterval = useRef();
   const [spray, setSpray] = useState(1);
-  // eslint-disable-next-line no-unused-vars
-  const [_, setShowTransition] = useAtom(showTransitionAtom);
+  const [, setShowTransition] = useAtom(showTransitionAtom);
 
   const isActive = location.pathname === to;
 

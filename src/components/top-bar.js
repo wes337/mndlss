@@ -6,8 +6,7 @@ import "../styles/top-bar.scss";
 function TopBar() {
   const location = useLocation();
   const navigate = useNavigate();
-  // eslint-disable-next-line no-unused-vars
-  const [_, setShowTransition] = useAtom(showTransitionAtom);
+  const [, setShowTransition] = useAtom(showTransitionAtom);
 
   const onClick = () => {
     if (location.pathname === "/") {
