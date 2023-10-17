@@ -5,7 +5,7 @@ import { showTransitionAtom } from "../state";
 import { CDN_URL } from "../constants";
 import "../styles/nav-link.scss";
 
-function NavLink({ to, mainImg, altImg, label }) {
+function NavLink({ to, img, label }) {
   const location = useLocation();
   const navigate = useNavigate();
   const sprayInterval = useRef();
@@ -65,12 +65,12 @@ function NavLink({ to, mainImg, altImg, label }) {
       <div className="nav-link-icon">
         <img
           className="main"
-          src={`${CDN_URL}/images/nav/${mainImg}.png`}
+          src={`${CDN_URL}/images/nav/${img}-1.png`}
           alt=""
         />
         <img
           className="alt"
-          src={`${CDN_URL}/images/nav/${altImg}.png`}
+          src={`${CDN_URL}/images/nav/${img}-2.png`}
           alt=""
         />
       </div>
