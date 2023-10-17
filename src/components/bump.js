@@ -5,15 +5,25 @@ import "../styles/bump.scss";
 
 const BUMPS = [
   `${CDN_URL}/videos/bump-1-comp-muted.mp4`,
+  `${CDN_URL}/videos/static-5-comp-muted.mp4`,
   `${CDN_URL}/videos/bump-2-comp-muted.mp4`,
+  `${CDN_URL}/videos/static-6-comp-muted.mp4`,
   `${CDN_URL}/videos/bump-3-comp-muted.mp4`,
+  `${CDN_URL}/videos/static-7-comp-muted.mp4`,
   `${CDN_URL}/videos/bump-4-comp-muted.mp4`,
+  `${CDN_URL}/videos/static-8-comp-muted.mp4`,
   `${CDN_URL}/videos/bump-5-comp-muted.mp4`,
+  `${CDN_URL}/videos/static-9-comp-muted.mp4`,
   `${CDN_URL}/videos/bump-6-comp-muted.mp4`,
+  `${CDN_URL}/videos/static-10-comp-muted.mp4`,
   `${CDN_URL}/videos/bump-7-comp-muted.mp4`,
+  `${CDN_URL}/videos/static-11-comp-muted.mp4`,
   `${CDN_URL}/videos/bump-8-comp-muted.mp4`,
+  `${CDN_URL}/videos/static-12-comp-muted.mp4`,
   `${CDN_URL}/videos/bump-9-comp-muted.mp4`,
+  `${CDN_URL}/videos/static-3-comp-muted.mp4`,
   `${CDN_URL}/videos/bump-10-comp-muted.mp4`,
+  `${CDN_URL}/videos/static-4-comp-muted.mp4`,
 ];
 
 function Bump() {
@@ -48,7 +58,7 @@ function Bump() {
 
     const staticVideoTimeout = setTimeout(() => {
       setStaticVideo("");
-    }, 300);
+    }, 200);
 
     return () => {
       if (bumpVideo) {
@@ -61,13 +71,6 @@ function Bump() {
 
   return (
     <div className="bump">
-      <video
-        className={`static-video${staticVideo ? " show " : ""}`}
-        src={staticVideo || getRandomStaticVideo()}
-        muted
-        playsInline
-        autoPlay
-      />
       {BUMPS.map((bump, i) => (
         <video
           key={`bump-${i}`}
@@ -79,6 +82,13 @@ function Bump() {
           <source src={bump} type="video/mp4" />
         </video>
       ))}
+      <video
+        className={`static-video${staticVideo ? " show " : ""}`}
+        src={staticVideo || getRandomStaticVideo()}
+        muted
+        playsInline
+        autoPlay
+      />
     </div>
   );
 }
