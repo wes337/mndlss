@@ -4,12 +4,6 @@
   mix-blend-mode: multiply;
 
   video {
-    pointer-events: none;
-    user-select: none;
-  }
-
-  .bump-video,
-  .static-video {
     position: fixed;
     top: 0;
     left: 0;

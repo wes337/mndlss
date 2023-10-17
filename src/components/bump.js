@@ -28,45 +28,40 @@ const BUMPS = [
 function Bump() {
   const [currentBump, setCurrentBump] = useState(0);
 
+  const playNextBump = () => {
+    setCurrentBump((currentBump) => {
+      const nextBump = currentBump + 1;
+      return nextBump > BUMPS.length - 1 ? 1 : nextBump;
+    });
+  };
+
   useEffect(() => {
-    const bumpVideo = document.getElementById(`bump-${currentBump}`);
+    const bumps = document.querySelector("#bumps");
 
-    if (!bumpVideo) {
-      return;
-    }
+    const previousBumpVideos = bumps.querySelectorAll("video");
+    previousBumpVideos.forEach((video) => {
+      video.remove();
+    });
 
-    const playNextBump = () => {
-      setCurrentBump((currentBump) => {
-        const nextBump = currentBump + 1;
-        return nextBump > BUMPS.length - 1 ? 1 : nextBump;
-      });
-    };
+    const bumpVideo = document.createElement("video");
 
+    bumpVideo.src = BUMPS[currentBump];
     bumpVideo.onended = playNextBump;
     bumpVideo.volume = 0;
     bumpVideo.muted = true;
-    bumpVideo.play();
+    bumpVideo.playsInline = true;
+    bumpVideo.play().catch(() => {
+      // Do nothing
+    });
+
+    bumps.appendChild(bumpVideo);
 
     return () => {
-      if (bumpVideo) {
-        bumpVideo.onended = undefined;
-      }
+      bumpVideo.remove();
     };
   }, [currentBump]);
 
-  return (
-    <div className="bump">
-      <video
-        key={`bump-${currentBump}`}
-        id={`bump-${currentBump}`}
-        className={`bump-video`}
-        muted
-        playsInline
-      >
-        <source src={BUMPS[currentBump]} type="video/mp4" />
-      </video>
-    </div>
-  );
+  return <div id="bumps" className="bump" />;
 }
 
 export default Bump;
