@@ -1,26 +1,44 @@
 import { useEffect, useState } from "react";
 import { CDN_URL } from "../constants";
-import { getRandomInt } from "../utils";
 import "../styles/bump.scss";
 
-const NUMBER_OF_BUMPS = 10;
+const BUMPS = [
+  `${CDN_URL}/videos/bump-1-comp.mp4`,
+  `${CDN_URL}/videos/static-4-comp.mp4`,
+  `${CDN_URL}/videos/bump-2-comp.mp4`,
+  `${CDN_URL}/videos/static-6-comp.mp4`,
+  `${CDN_URL}/videos/bump-3-comp-2.mp4`,
+  `${CDN_URL}/videos/static-7-comp.mp4`,
+  `${CDN_URL}/videos/bump-4-comp.mp4`,
+  `${CDN_URL}/videos/static-8-comp.mp4`,
+  `${CDN_URL}/videos/bump-5-comp.mp4`,
+  `${CDN_URL}/videos/static-9-comp.mp4`,
+  `${CDN_URL}/videos/bump-6-comp.mp4`,
+  `${CDN_URL}/videos/static-10-comp.mp4`,
+  `${CDN_URL}/videos/bump-7-comp.mp4`,
+  `${CDN_URL}/videos/static-11-comp.mp4`,
+  `${CDN_URL}/videos/bump-8-comp.mp4`,
+  `${CDN_URL}/videos/static-12-comp.mp4`,
+  `${CDN_URL}/videos/bump-9-comp.mp4`,
+  `${CDN_URL}/videos/static-3-comp.mp4`,
+  `${CDN_URL}/videos/bump-10-comp.mp4`,
+  `${CDN_URL}/videos/static-5-comp.mp4`,
+];
 
 function Bump() {
-  const [bump, setBump] = useState(1);
-  const [showStatic, setShowStatic] = useState(0);
+  const [currentBump, setCurrentBump] = useState(1);
 
   useEffect(() => {
-    const bumpVideo = document.getElementById(`bump-${bump - 1}`);
+    const bumpVideo = document.getElementById(`bump-${currentBump - 1}`);
 
     if (!bumpVideo) {
       return;
     }
 
     const playNextBump = () => {
-      setBump((bump) => {
-        const nextBump = bump + 1;
-
-        return nextBump > NUMBER_OF_BUMPS ? 1 : nextBump;
+      setCurrentBump((currentBump) => {
+        const nextBump = currentBump + 1;
+        return nextBump > BUMPS.length ? 1 : nextBump;
       });
     };
 
@@ -29,52 +47,24 @@ function Bump() {
     bumpVideo.muted = true;
     bumpVideo.play();
 
-    const staticVid = getRandomInt(1, 12);
-    setShowStatic(staticVid);
-
-    const staticTimeout = setTimeout(() => {
-      setShowStatic(0);
-    }, 750);
-
     return () => {
       if (bumpVideo) {
         bumpVideo.onended = undefined;
       }
-
-      if (staticTimeout) {
-        clearTimeout(staticTimeout);
-      }
     };
-  }, [bump]);
+  }, [currentBump]);
 
   return (
     <div className="bump">
-      <video
-        key={showStatic}
-        id="static"
-        className={`bump-static${showStatic !== 0 ? " show" : ""}`}
-        autoPlay
-        loop
-        muted
-        playsInline
-      >
-        <source
-          src={`${CDN_URL}/videos/CRT_${showStatic || 2}-comp.mp4`}
-          type="video/mp4"
-        />
-      </video>
-      {[...Array(NUMBER_OF_BUMPS)].map((_, i) => (
+      {BUMPS.map((bump, i) => (
         <video
           key={`bump-${i}`}
           id={`bump-${i}`}
-          className={`bump-video${bump === i + 1 ? " show" : ""}`}
+          className={`bump-video${currentBump === i + 1 ? " show" : ""}`}
           muted
           playsInline
         >
-          <source
-            src={`${CDN_URL}/videos/bump-${i + 1}-comp.mp4`}
-            type="video/mp4"
-          />
+          <source src={bump} type="video/mp4" />
         </video>
       ))}
     </div>
