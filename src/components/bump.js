@@ -1,32 +1,29 @@
 import { useEffect, useState } from "react";
 import { CDN_URL } from "../constants";
+import { getRandomInt } from "../utils";
 import "../styles/bump.scss";
 
 const BUMPS = [
-  `${CDN_URL}/videos/bump-1-comp.mp4`,
-  `${CDN_URL}/videos/static-4-comp.mp4`,
-  `${CDN_URL}/videos/bump-2-comp.mp4`,
-  `${CDN_URL}/videos/static-6-comp.mp4`,
-  `${CDN_URL}/videos/bump-3-comp-2.mp4`,
-  `${CDN_URL}/videos/static-7-comp.mp4`,
-  `${CDN_URL}/videos/bump-4-comp.mp4`,
-  `${CDN_URL}/videos/static-8-comp.mp4`,
-  `${CDN_URL}/videos/bump-5-comp.mp4`,
-  `${CDN_URL}/videos/static-9-comp.mp4`,
-  `${CDN_URL}/videos/bump-6-comp.mp4`,
-  `${CDN_URL}/videos/static-10-comp.mp4`,
-  `${CDN_URL}/videos/bump-7-comp.mp4`,
-  `${CDN_URL}/videos/static-11-comp.mp4`,
-  `${CDN_URL}/videos/bump-8-comp.mp4`,
-  `${CDN_URL}/videos/static-12-comp.mp4`,
-  `${CDN_URL}/videos/bump-9-comp.mp4`,
-  `${CDN_URL}/videos/static-3-comp.mp4`,
-  `${CDN_URL}/videos/bump-10-comp.mp4`,
-  `${CDN_URL}/videos/static-5-comp.mp4`,
+  `${CDN_URL}/videos/bump-1-comp-muted.mp4`,
+  `${CDN_URL}/videos/bump-2-comp-muted.mp4`,
+  `${CDN_URL}/videos/bump-3-comp-muted.mp4`,
+  `${CDN_URL}/videos/bump-4-comp-muted.mp4`,
+  `${CDN_URL}/videos/bump-5-comp-muted.mp4`,
+  `${CDN_URL}/videos/bump-6-comp-muted.mp4`,
+  `${CDN_URL}/videos/bump-7-comp-muted.mp4`,
+  `${CDN_URL}/videos/bump-8-comp-muted.mp4`,
+  `${CDN_URL}/videos/bump-9-comp-muted.mp4`,
+  `${CDN_URL}/videos/bump-10-comp-muted.mp4`,
 ];
 
 function Bump() {
   const [currentBump, setCurrentBump] = useState(1);
+  const [staticVideo, setStaticVideo] = useState("");
+
+  const getRandomStaticVideo = () => {
+    const randomStaticNumber = getRandomInt(1, 12);
+    return `${CDN_URL}/videos/static-${randomStaticNumber}-comp-muted.mp4`;
+  };
 
   useEffect(() => {
     const bumpVideo = document.getElementById(`bump-${currentBump - 1}`);
@@ -47,15 +44,30 @@ function Bump() {
     bumpVideo.muted = true;
     bumpVideo.play();
 
+    setStaticVideo(getRandomStaticVideo());
+
+    const staticVideoTimeout = setTimeout(() => {
+      setStaticVideo("");
+    }, 300);
+
     return () => {
       if (bumpVideo) {
         bumpVideo.onended = undefined;
       }
+
+      clearTimeout(staticVideoTimeout);
     };
   }, [currentBump]);
 
   return (
     <div className="bump">
+      <video
+        className={`static-video${staticVideo ? " show " : ""}`}
+        src={staticVideo || getRandomStaticVideo()}
+        muted
+        playsInline
+        autoPlay
+      />
       {BUMPS.map((bump, i) => (
         <video
           key={`bump-${i}`}
