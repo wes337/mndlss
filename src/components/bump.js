@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { CDN_URL } from "../constants";
-import { getRandomInt } from "../utils";
 import "../styles/bump.scss";
 
 const BUMPS = [
@@ -27,16 +26,10 @@ const BUMPS = [
 ];
 
 function Bump() {
-  const [currentBump, setCurrentBump] = useState(1);
-  const [staticVideo, setStaticVideo] = useState("");
-
-  const getRandomStaticVideo = () => {
-    const randomStaticNumber = getRandomInt(1, 12);
-    return `${CDN_URL}/videos/static-${randomStaticNumber}-comp-muted.mp4`;
-  };
+  const [currentBump, setCurrentBump] = useState(0);
 
   useEffect(() => {
-    const bumpVideo = document.getElementById(`bump-${currentBump - 1}`);
+    const bumpVideo = document.getElementById(`bump-${currentBump}`);
 
     if (!bumpVideo) {
       return;
@@ -45,7 +38,7 @@ function Bump() {
     const playNextBump = () => {
       setCurrentBump((currentBump) => {
         const nextBump = currentBump + 1;
-        return nextBump > BUMPS.length ? 1 : nextBump;
+        return nextBump > BUMPS.length - 1 ? 1 : nextBump;
       });
     };
 
@@ -54,41 +47,24 @@ function Bump() {
     bumpVideo.muted = true;
     bumpVideo.play();
 
-    setStaticVideo(getRandomStaticVideo());
-
-    const staticVideoTimeout = setTimeout(() => {
-      setStaticVideo("");
-    }, 200);
-
     return () => {
       if (bumpVideo) {
         bumpVideo.onended = undefined;
       }
-
-      clearTimeout(staticVideoTimeout);
     };
   }, [currentBump]);
 
   return (
     <div className="bump">
-      {BUMPS.map((bump, i) => (
-        <video
-          key={`bump-${i}`}
-          id={`bump-${i}`}
-          className={`bump-video${currentBump === i + 1 ? " show" : ""}`}
-          muted
-          playsInline
-        >
-          <source src={bump} type="video/mp4" />
-        </video>
-      ))}
       <video
-        className={`static-video${staticVideo ? " show " : ""}`}
-        src={staticVideo || getRandomStaticVideo()}
+        key={`bump-${currentBump}`}
+        id={`bump-${currentBump}`}
+        className={`bump-video`}
         muted
         playsInline
-        autoPlay
-      />
+      >
+        <source src={BUMPS[currentBump]} type="video/mp4" />
+      </video>
     </div>
   );
 }
