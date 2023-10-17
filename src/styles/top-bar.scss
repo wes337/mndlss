@@ -17,19 +17,25 @@
 
     button {
       all: unset;
+      position: relative;
       display: flex;
       height: 100%;
+      width: 68px;
       cursor: pointer;
 
-      &:hover,
-      &:focus {
-        filter: invert(1);
+      img {
+        position: absolute;
+        height: 80px;
+        width: 68px;
       }
-    }
 
-    img {
-      height: 100%;
-      width: auto;
+      .hide {
+        opacity: 0;
+      }
+
+      .show {
+        opacity: 1;
+      }
     }
   }
 }

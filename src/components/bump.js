@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { CDN_URL } from "../constants";
+import { getRandomInt } from "../utils";
 import "../styles/bump.scss";
 
 const NUMBER_OF_BUMPS = 10;
 
 function Bump() {
   const [bump, setBump] = useState(1);
-  const [showStatic, setShowStatic] = useState(false);
+  const [showStatic, setShowStatic] = useState(0);
 
   useEffect(() => {
     const bumpVideo = document.getElementById(`bump-${bump - 1}`);
@@ -28,11 +29,12 @@ function Bump() {
     bumpVideo.muted = true;
     bumpVideo.play();
 
-    setShowStatic(true);
+    const staticVid = getRandomInt(1, 12);
+    setShowStatic(staticVid);
 
     const staticTimeout = setTimeout(() => {
-      setShowStatic(false);
-    }, 500);
+      setShowStatic(0);
+    }, 750);
 
     return () => {
       if (bumpVideo) {
@@ -48,14 +50,18 @@ function Bump() {
   return (
     <div className="bump">
       <video
+        key={showStatic}
         id="static"
-        className={`bump-static${showStatic ? " show" : ""}`}
+        className={`bump-static${showStatic !== 0 ? " show" : ""}`}
         autoPlay
         loop
         muted
         playsInline
       >
-        <source src={`${CDN_URL}/videos/static-comp.mp4`} type="video/mp4" />
+        <source
+          src={`${CDN_URL}/videos/CRT_${showStatic || 2}-comp.mp4`}
+          type="video/mp4"
+        />
       </video>
       {[...Array(NUMBER_OF_BUMPS)].map((_, i) => (
         <video

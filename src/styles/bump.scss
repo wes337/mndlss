@@ -17,11 +17,29 @@
     width: 45vw;
     height: 100%;
     transform: translate(61%, -5%);
-    mix-blend-mode: difference;
+    mix-blend-mode: screen;
+
+    transition: opacity 0.1s ease;
 
     @include for-phone {
       width: 90%;
       transform: translate(5%, -5%);
+    }
+
+    @include for-large-screens {
+      width: 47vw;
+      transform: translate(56.5%, -5%);
+    }
+
+    @include for-short-screens {
+      width: 50.5vw;
+      height: 110%;
+      transform: translate(49%, -9%);
+    }
+
+    @include for-tablet {
+      width: 77vw;
+      transform: translate(15%, -5%);
     }
 
     &.show {

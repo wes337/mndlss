@@ -8,6 +8,7 @@ $cdn-url: "https://mndlss.b-cdn.net";
 
 $screen-size-xxs: 420px;
 $screen-size-xs: 500px;
+$screen-size-md: 900px;
 $screen-size-sm: 1100px;
 $screen-size-lg: 2000px;
 
@@ -31,6 +32,12 @@ $screen-size-lg: 2000px;
 
 @mixin for-large-screens {
   @media screen and (min-width: $screen-size-lg) and (min-height: $screen-size-sm) {
+    @content;
+  }
+}
+
+@mixin for-short-screens {
+  @media screen and (min-width: $screen-size-sm) and (max-height: $screen-size-md) {
     @content;
   }
 }
