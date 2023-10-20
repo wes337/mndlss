@@ -9,10 +9,16 @@ function Videos() {
   const selectedVideo = VIDEOS[selectedVideoIndex];
 
   useEffect(() => {
-    return () => {
+    const clearVideos = () => {
       document
         .querySelectorAll("animated")
         .forEach((element) => element.remove());
+    };
+
+    clearVideos();
+
+    return () => {
+      clearVideos();
     };
   }, []);
 
