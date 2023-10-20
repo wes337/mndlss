@@ -17,6 +17,10 @@ body {
   overflow: hidden;
   cursor: none;
 
+  @include for-phone {
+    cursor: auto;
+  }
+
   &.light {
     background-color: $color-white;
     color: $color-black;

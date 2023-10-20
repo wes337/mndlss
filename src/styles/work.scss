@@ -9,6 +9,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-bottom: 5rem;
+
+  @include for-phone {
+    padding-bottom: 0;
+  }
+
+  @include for-large-screens {
+    padding-bottom: 0;
+  }
 
   .work-backdrop {
     position: fixed;
