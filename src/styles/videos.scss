@@ -161,6 +161,12 @@
       filter: grayscale(1);
     }
 
+    &.selected {
+      .still {
+        filter: none;
+      }
+    }
+
     &:before {
       position: absolute;
       top: 0;

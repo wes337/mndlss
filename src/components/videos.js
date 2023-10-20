@@ -92,7 +92,9 @@ function Videos() {
           return (
             <button
               id={`video-${index}`}
-              className="video"
+              className={`video${
+                selectedVideoIndex === index ? " selected" : ""
+              }`}
               key={video.name}
               onClick={() => onSelectVideo(index)}
               onPointerEnter={() => onPointerEnter(index)}

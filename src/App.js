@@ -3,6 +3,7 @@ import Backdrop from "./components/backdrop";
 import Footer from "./components/footer";
 import TopBar from "./components/top-bar";
 import Transition from "./components/transition";
+import Cursor from "./components/cursor";
 import Home from "./pages/home";
 import Work from "./pages/work";
 import Contact from "./pages/contact";
@@ -15,6 +16,7 @@ function App() {
 
   return (
     <>
+      <Cursor />
       <Backdrop />
       <TopBar />
       <Routes location={location} key={location.pathname}>
