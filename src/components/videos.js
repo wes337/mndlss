@@ -1,104 +1,53 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { VIDEOS } from "../data/work";
 import { CDN_URL } from "../constants";
 import WatchButton from "./watch-button";
 import "../styles/videos.scss";
 
-const PLACEHOLDER_DESCRIPTION = `Nam sed ligula consequat, lacinia mi eget, volutpat turpis. Praesent a elit magna. Morbi nec felis mi. Etiam et orci sed orci ultricies rhoncus. Ut in nibh odio. Proin orci nunc, pharetra at elementum at, laoreet a purus.`;
-
-const VIDEOS = [
-  {
-    name: "Video Name #1",
-    description: PLACEHOLDER_DESCRIPTION,
-    url: "https://www.youtube.com",
-    image: "A-E",
-  },
-  {
-    name: "Video Name #2",
-    description: PLACEHOLDER_DESCRIPTION,
-    url: "https://www.youtube.com",
-    image: "A-EE",
-  },
-  {
-    name: "Video Name #3",
-    description: PLACEHOLDER_DESCRIPTION,
-    url: "https://www.youtube.com",
-    image: "A-WR",
-  },
-  {
-    name: "Video Name #4",
-    description: PLACEHOLDER_DESCRIPTION,
-    url: "https://www.youtube.com",
-    image: "A-YAA",
-  },
-  {
-    name: "Video Name #5",
-    description: PLACEHOLDER_DESCRIPTION,
-    url: "https://www.youtube.com",
-    image: "EE-Wander",
-  },
-  {
-    name: "Video Name #6",
-    description: PLACEHOLDER_DESCRIPTION,
-    url: "https://www.youtube.com",
-    image: "Joey",
-  },
-  {
-    name: "Video Name #7",
-    description: PLACEHOLDER_DESCRIPTION,
-    url: "https://www.youtube.com",
-    image: "Julz",
-  },
-  {
-    name: "Video Name #8",
-    description: PLACEHOLDER_DESCRIPTION,
-    url: "https://www.youtube.com",
-    image: "PM-A",
-  },
-  {
-    name: "Video Name #9",
-    description: PLACEHOLDER_DESCRIPTION,
-    url: "https://www.youtube.com",
-    image: "PM-IWIDH",
-  },
-  {
-    name: "Video Name #10",
-    description: PLACEHOLDER_DESCRIPTION,
-    url: "https://www.youtube.com",
-    image: "PM-M",
-  },
-  {
-    name: "Video Name #11",
-    description: PLACEHOLDER_DESCRIPTION,
-    url: "https://www.youtube.com",
-    image: "RL-BRYG",
-  },
-  {
-    name: "Video Name #12",
-    description: PLACEHOLDER_DESCRIPTION,
-    url: "https://www.youtube.com",
-    image: "RL-SMM2C",
-  },
-  {
-    name: "Video Name #13",
-    description: PLACEHOLDER_DESCRIPTION,
-    url: "https://www.youtube.com",
-    image: "RL-WIWU",
-  },
-];
-
 function Videos() {
   const [selectedVideoIndex, setSelectedVideoIndex] = useState(0);
-
   const selectedVideo = VIDEOS[selectedVideoIndex];
+
+  useEffect(() => {
+    return () => {
+      document
+        .querySelectorAll("animated")
+        .forEach((element) => element.remove());
+    };
+  }, []);
 
   const onSelectVideo = (index) => {
     setSelectedVideoIndex(index);
-    const videoElement = document.getElementById(`video-${index}`);
-    videoElement.scrollIntoView({
+    const videoButton = document.getElementById(`video-${index}`);
+    videoButton.scrollIntoView({
       behavior: "smooth",
       inline: "center",
       block: "center",
     });
+  };
+
+  const onPointerEnter = (index) => {
+    const videoButton = document.getElementById(`video-${index}`);
+
+    const previewVideo = document.createElement("video");
+
+    previewVideo.id = `preview-video-${index}`;
+    previewVideo.classList.add("animated");
+    previewVideo.src = `${CDN_URL}/gifs/${VIDEOS[index].image}.mp4`;
+    previewVideo.volume = 0;
+    previewVideo.muted = true;
+    previewVideo.loop = true;
+    previewVideo.playsInline = true;
+    previewVideo.play().catch(() => {
+      // Do nothing
+    });
+
+    videoButton.appendChild(previewVideo);
+  };
+
+  const onPointerLeave = (index) => {
+    const previewVideo = document.getElementById(`preview-video-${index}`);
+    previewVideo?.remove();
   };
 
   return (
@@ -110,11 +59,19 @@ function Videos() {
             src={`${CDN_URL}/images/misc/vignette.png`}
             alt=""
           />
-          <img
-            className="gif"
-            src={`${CDN_URL}/gifs/${selectedVideo.image}.gif`}
-            alt=""
-          />
+          <video
+            key={selectedVideo.image}
+            className="animated"
+            autoPlay
+            playsInline
+            muted
+            loop
+          >
+            <source
+              src={`${CDN_URL}/gifs/${selectedVideo.image}.mp4`}
+              type="video/mp4"
+            />
+          </video>
         </div>
         <div className="video-info">
           <div className="name">{selectedVideo.name}</div>
@@ -132,6 +89,8 @@ function Videos() {
               className="video"
               key={video.name}
               onClick={() => onSelectVideo(index)}
+              onPointerEnter={() => onPointerEnter(index)}
+              onPointerLeave={() => onPointerLeave(index)}
             >
               <img
                 className="vignette"
@@ -141,11 +100,6 @@ function Videos() {
               <img
                 className="still"
                 src={`${CDN_URL}/gifs/stills/${video.image}.png`}
-                alt=""
-              />
-              <img
-                className="gif"
-                src={`${CDN_URL}/gifs/${video.image}.gif`}
                 alt=""
               />
             </button>
