@@ -33,16 +33,19 @@
   .email {
     margin: 0;
     font-size: 2rem;
-    padding: 2rem 0;
     text-transform: uppercase;
     color: $color-red;
     font-weight: 600;
     text-shadow: 1px 1px 0px $color-dark-brown;
 
     @include for-phone {
-      padding: 1rem 0;
-      margin-bottom: 1rem;
+      // padding: 1rem 0;
+      // margin-bottom: 1rem;
       font-size: 1.8rem;
+    }
+
+    @include for-small-phone {
+      font-size: 1.6rem;
     }
 
     @include for-desktop {

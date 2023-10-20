@@ -15,8 +15,8 @@ function Contact() {
 
   return (
     <div className="contact">
-      <About />
       <h1 className="email">mndlsspictures@gmail.com</h1>
+      <About />
     </div>
   );
 }
