@@ -16,4 +16,9 @@ body {
   font-family: "Shadows Into Light", cursive;
   overflow: hidden;
   cursor: none;
+
+  &.light {
+    background-color: $color-white;
+    color: $color-black;
+  }
 }

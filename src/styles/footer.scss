@@ -13,5 +13,16 @@
     color: $color-light-gray;
     font-weight: 300;
     font-family: "DM Mono", monospace;
+
+    @include for-small-phone {
+      padding: 0.2rem;
+      font-size: 0.8rem;
+    }
+  }
+
+  &.light {
+    .footer-copyright {
+      color: $color-dark-gray;
+    }
   }
 }

@@ -39,4 +39,14 @@
       }
     }
   }
+
+  &.light {
+    .top-bar-logo {
+      button {
+        img {
+          filter: invert(1) drop-shadow(1px 1px 0px $color-light-gray);
+        }
+      }
+    }
+  }
 }

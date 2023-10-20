@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
+import { useAtom } from "jotai";
 import Backdrop from "./components/backdrop";
 import Footer from "./components/footer";
 import TopBar from "./components/top-bar";
@@ -9,10 +11,22 @@ import Work from "./pages/work";
 import Contact from "./pages/contact";
 import Shop from "./pages/shop";
 import More from "./pages/more";
+import { lightModeAtom } from "./state";
 import "./styles/app.scss";
 
 function App() {
   const location = useLocation();
+  const [lightMode] = useAtom(lightModeAtom);
+
+  useEffect(() => {
+    if (lightMode) {
+      document.body.classList.add("light");
+    } else {
+      document.body.classList.remove("light");
+    }
+
+    return () => document.body.classList.remove("light");
+  }, [lightMode]);
 
   return (
     <>

@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAtom } from "jotai";
-import { showTransitionAtom } from "../state";
+import { showTransitionAtom, lightModeAtom } from "../state";
 import { CDN_URL } from "../constants";
 import "../styles/nav-link.scss";
 
@@ -11,6 +11,7 @@ function NavLink({ to, img, label }) {
   const sprayInterval = useRef();
   const [spray, setSpray] = useState(1);
   const [, setShowTransition] = useAtom(showTransitionAtom);
+  const [lightMode] = useAtom(lightModeAtom);
 
   const isActive = location.pathname === to;
 
@@ -51,7 +52,9 @@ function NavLink({ to, img, label }) {
 
   return (
     <button
-      className={`nav-link${isActive ? " active" : ""}`}
+      className={`nav-link${isActive ? " active" : ""}${
+        lightMode ? " light" : ""
+      }`}
       onClick={onClick}
       onPointerEnter={startSprayInterval}
       onPointerLeave={stopSprayInterval}

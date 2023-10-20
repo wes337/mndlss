@@ -14,6 +14,16 @@
 
   --nav-icon-size: 128px;
 
+  &.light {
+    span {
+      color: $color-black;
+    }
+
+    .spray {
+      filter: invert(1);
+    }
+  }
+
   &:last-child {
     padding-right: 3rem;
 
@@ -84,6 +94,12 @@
     span {
       transform: scale(1.2) rotate(-5deg);
       filter: drop-shadow(1px 1px 0px $color-black);
+    }
+
+    &.light {
+      span {
+        filter: drop-shadow(2px 2px 0px $color-light-gray);
+      }
     }
 
     img {

@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAtom } from "jotai";
-import { showTransitionAtom } from "../state";
+import { lightModeAtom, showTransitionAtom } from "../state";
 import "../styles/top-bar.scss";
 
 function TopBar() {
   const location = useLocation();
   const navigate = useNavigate();
   const [, setShowTransition] = useAtom(showTransitionAtom);
+  const [lightMode] = useAtom(lightModeAtom);
   const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
@@ -30,7 +31,7 @@ function TopBar() {
   };
 
   return (
-    <div className="top-bar">
+    <div className={`top-bar${lightMode ? " light" : ""}`}>
       <div className="top-bar-logo">
         <button onClick={onClick}>
           <img
