@@ -5,13 +5,17 @@
   align-items: center;
   justify-content: space-between;
   margin: auto;
-  padding-bottom: 10vh;
+  padding-bottom: 7vh;
   color: $color-white;
   width: 60vw;
   max-width: 900px;
 
   @include for-large-screens {
     max-width: 1200px;
+  }
+
+  @include for-short-screens {
+    padding-bottom: 2vh;
   }
 
   @include for-phone {

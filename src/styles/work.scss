@@ -1,3 +1,5 @@
+@import "./variables.scss";
+
 .work {
   position: fixed;
   top: 0;
@@ -7,4 +9,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  .work-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    object-fit: cover;
+    filter: brightness(0.3);
+
+    @media screen and (max-width: 500px) and (orientation: portrait) {
+      height: 100vh;
+      width: auto;
+      object-position: -100vw center;
+    }
+  }
 }

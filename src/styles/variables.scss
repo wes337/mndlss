@@ -3,6 +3,7 @@ $top-bar-height: 80px;
 $color-white: #ffffff;
 $color-black: #000000;
 $color-light-gray: #dfe1dc;
+$color-dark-gray: #121010;
 
 $cdn-url: "https://mndlss.b-cdn.net";
 
@@ -13,7 +14,7 @@ $screen-size-sm: 1100px;
 $screen-size-lg: 2000px;
 
 @mixin for-small-phone {
-  @media screen and (max-width: $screen-size-xxs) {
+  @media screen and (max-width: $screen-size-xxs) and (max-height: 750px) {
     @content;
   }
 }

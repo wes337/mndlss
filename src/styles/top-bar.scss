@@ -27,6 +27,7 @@
         position: absolute;
         height: 80px;
         width: 68px;
+        filter: drop-shadow(1px 1px 0px $color-black);
       }
 
       .hide {
