@@ -18,7 +18,7 @@
     height: 100vh;
     pointer-events: none;
     object-fit: cover;
-    filter: brightness(0.3);
+    filter: grayscale(0.5) brightness(0.3);
 
     @media screen and (max-width: 500px) and (orientation: portrait) {
       height: 100vh;
