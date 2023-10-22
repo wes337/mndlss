@@ -10,7 +10,6 @@ import Home from "./pages/home";
 import Work from "./pages/work";
 import Contact from "./pages/contact";
 import Shop from "./pages/shop";
-import More from "./pages/more";
 import { lightModeAtom } from "./state";
 import "./styles/app.scss";
 
@@ -38,7 +37,6 @@ function App() {
         <Route path="/work" element={<Work />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/shop" element={<Shop />} />
-        <Route path="/more" element={<More />} />
       </Routes>
       <Transition />
       <Footer />

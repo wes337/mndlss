@@ -6,7 +6,7 @@ function Nav() {
     <div className="nav">
       <NavLink label="Work" to="/work" img="face" />
       <NavLink label="Contact" to="/contact" img="skull" />
-      <NavLink label="More" to="/more" img="brain" />
+      <NavLink label="Shop" to="/shop" img="brain" />
     </div>
   );
 }
