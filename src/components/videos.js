@@ -56,10 +56,26 @@ function Videos() {
     previewVideo?.remove();
   };
 
+  const selectNextOrPrevVideo = (next) => {
+    let nextIndex = selectedVideoIndex + (next ? 1 : -1);
+    if (nextIndex > VIDEOS.length - 1) {
+      nextIndex = 0;
+    }
+
+    if (nextIndex < 0) {
+      nextIndex = VIDEOS.length - 1;
+    }
+
+    onSelectVideo(nextIndex);
+  };
+
   return (
     <div className="videos">
       <div className="selected-video">
         <div className="video-preview">
+          <button className="previous" onClick={() => selectNextOrPrevVideo()}>
+            <img src={`${CDN_URL}/images/misc/arrow.png`} alt="Prev" />
+          </button>
           <img
             className="vignette"
             src={`${CDN_URL}/images/misc/vignette.png`}
@@ -78,6 +94,9 @@ function Videos() {
               type="video/mp4"
             />
           </video>
+          <button className="next" onClick={() => selectNextOrPrevVideo(true)}>
+            <img src={`${CDN_URL}/images/misc/arrow.png`} alt="Next" />
+          </button>
         </div>
         <div className="video-info">
           <div className="name">{selectedVideo.name}</div>

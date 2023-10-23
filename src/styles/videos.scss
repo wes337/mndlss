@@ -46,6 +46,7 @@
     }
 
     .video-preview {
+      display: flex;
       position: relative;
       z-index: 2;
       width: 100%;
@@ -65,6 +66,42 @@
         border: 0.75rem solid $color-dark-gray;
         width: 275px;
         height: 200px;
+      }
+    }
+
+    .previous,
+    .next {
+      all: unset;
+      cursor: pointer;
+      position: absolute;
+      top: 45%;
+      height: 40px;
+      z-index: 3;
+
+      img {
+        height: 100%;
+        width: auto;
+      }
+
+      @include for-desktop {
+        display: none;
+      }
+    }
+
+    .previous {
+      left: -2rem;
+      transform: scaleX(-1);
+
+      &:active {
+        transform: scale(1.2) scaleX(-1);
+      }
+    }
+
+    .next {
+      right: -2rem;
+
+      &:active {
+        transform: scale(1.2);
       }
     }
 
@@ -162,6 +199,9 @@
     }
 
     &.selected {
+      outline: 1px solid rgba($color-white, 0.5);
+      outline-offset: 4px;
+
       .still {
         filter: none;
       }
@@ -222,7 +262,7 @@
   .video-scroller {
     display: flex;
     gap: 1rem;
-    padding: 1rem 0;
+    padding: 1rem 5px;
     overflow: auto;
     max-width: var(--max-width);
     width: 100%;
