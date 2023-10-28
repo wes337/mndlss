@@ -20,8 +20,9 @@
 
     @include for-phone {
       max-height: 375px;
+      margin: auto;
+      max-width: 160px;
       object-fit: cover;
-      object-position: 0 -25px;
     }
   }
 

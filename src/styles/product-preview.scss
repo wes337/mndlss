@@ -62,7 +62,7 @@
 
       @include for-phone {
         margin-top: $top-bar-height;
-        max-height: 300px;
+        max-height: 200px;
         width: 100%;
       }
 
@@ -87,7 +87,7 @@
       background-color: $color-black;
       height: 100%;
       pointer-events: auto;
-      padding: 0 2rem;
+      padding: 0 1rem;
       overflow: auto;
 
       .product-preview-title {
@@ -146,7 +146,7 @@
         gap: 0.5rem;
         font-weight: 100;
         font-size: 1.2rem;
-        padding: 1.5rem;
+        padding: 1rem;
         text-align: justify;
         background-color: rgba($color-light-gray, 0.1);
 

@@ -22,9 +22,10 @@
     letter-spacing: -0.5px;
 
     @include for-phone {
-      font-size: 0.8rem;
+      font-size: 0.7rem;
       padding: 1rem 0.5rem;
-      letter-spacing: -0.75px;
+      letter-spacing: -1px;
+      white-space: nowrap;
     }
   }
 
@@ -37,7 +38,7 @@
     overflow: auto;
 
     @include for-phone {
-      max-height: 60vh;
+      max-height: 52vh;
     }
 
     @include for-large-screens {
@@ -56,4 +57,5 @@
   z-index: -1;
   pointer-events: none;
   filter: drop-shadow(0px 0px 1px $color-white);
+  opacity: 0.5;
 }

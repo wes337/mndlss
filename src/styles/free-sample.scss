@@ -19,8 +19,11 @@
       border: 0;
       padding: 0.5rem;
       flex-grow: 1;
+      font-size: 16px;
       color: $color-white;
       background-color: $color-dark-gray;
+      outline: 2px solid $color-gray;
+      border-radius: 0;
 
       &:focus {
         outline: 2px solid $color-light-gray;
@@ -36,6 +39,7 @@
       color: $color-white;
       background-color: $color-gray;
       text-shadow: 2px 2px 0px $color-black;
+      outline: 2px solid $color-gray;
 
       &:hover {
         background-color: $color-dark-gray;
