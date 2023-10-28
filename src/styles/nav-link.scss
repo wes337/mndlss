@@ -12,6 +12,10 @@
   height: $top-bar-height;
   font-size: 2.8rem;
 
+  @include for-phone {
+    height: $top-bar-height-mobile;
+  }
+
   --nav-icon-size: 128px;
 
   &.light {

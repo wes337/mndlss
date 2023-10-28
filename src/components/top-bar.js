@@ -1,13 +1,18 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAtom } from "jotai";
-import { lightModeAtom, showTransitionAtom } from "../state";
+import {
+  lightModeAtom,
+  showTransitionAtom,
+  productPreviewAtom,
+} from "../state";
 import "../styles/top-bar.scss";
 
 function TopBar() {
   const location = useLocation();
   const navigate = useNavigate();
   const [, setShowTransition] = useAtom(showTransitionAtom);
+  const [, setProductPreview] = useAtom(productPreviewAtom);
   const [lightMode] = useAtom(lightModeAtom);
   const [animate, setAnimate] = useState(false);
 
@@ -27,7 +32,11 @@ function TopBar() {
     }
 
     setShowTransition(true);
-    setTimeout(() => navigate("/"), 250);
+
+    setTimeout(() => {
+      navigate("/");
+      setProductPreview(null);
+    }, 250);
   };
 
   return (

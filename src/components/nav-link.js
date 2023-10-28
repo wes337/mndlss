@@ -1,53 +1,58 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAtom } from "jotai";
-import { showTransitionAtom, lightModeAtom } from "../state";
 import { CDN_URL } from "../constants";
+import {
+  showTransitionAtom,
+  showTransitionSwipeAtom,
+  lightModeAtom,
+} from "../state";
+import useSpray from "../hooks/spray";
 import "../styles/nav-link.scss";
 
 function NavLink({ to, img, label }) {
   const location = useLocation();
   const navigate = useNavigate();
-  const sprayInterval = useRef();
-  const [spray, setSpray] = useState(1);
   const [, setShowTransition] = useAtom(showTransitionAtom);
+  const [, setShowTransitionSwipe] = useAtom(showTransitionSwipeAtom);
   const [lightMode] = useAtom(lightModeAtom);
+  const { spray, startSprayInterval, stopSprayInterval } = useSpray();
 
   const isActive = location.pathname === to;
-
-  const startSprayInterval = () => {
-    sprayInterval.current = setInterval(() => {
-      setSpray((spray) => {
-        const nextSpray = spray + 1;
-        return nextSpray > 6 ? 1 : nextSpray;
-      });
-    }, 200);
-  };
-
-  const stopSprayInterval = () => {
-    clearInterval(sprayInterval.current);
-    sprayInterval.current = undefined;
-  };
-
-  useEffect(() => {
-    return () => {
-      clearInterval(sprayInterval.current);
-    };
-  }, []);
 
   useEffect(() => {
     if (isActive) {
       startSprayInterval();
     }
-  }, [isActive]);
+  }, [isActive, startSprayInterval]);
 
   const onClick = () => {
     if (isActive) {
       return;
     }
 
-    setShowTransition(true);
-    setTimeout(() => navigate(to), 250);
+    if (to === "/shop") {
+      setShowTransitionSwipe(true);
+    } else {
+      setShowTransition(true);
+    }
+    setTimeout(() => navigate(to), to === "/shop" ? 500 : 250);
+  };
+
+  const onPointerEnter = () => {
+    if (isActive) {
+      return;
+    }
+
+    startSprayInterval();
+  };
+
+  const onPointerLeave = () => {
+    if (isActive) {
+      return;
+    }
+
+    stopSprayInterval();
   };
 
   return (
@@ -56,8 +61,8 @@ function NavLink({ to, img, label }) {
         lightMode ? " light" : ""
       }`}
       onClick={onClick}
-      onPointerEnter={startSprayInterval}
-      onPointerLeave={stopSprayInterval}
+      onPointerEnter={onPointerEnter}
+      onPointerLeave={onPointerLeave}
     >
       <img
         className="spray"

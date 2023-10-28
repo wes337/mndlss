@@ -31,6 +31,8 @@
   }
 
   .email {
+    all: unset;
+    cursor: pointer;
     margin: 0;
     font-size: 2rem;
     text-transform: uppercase;
@@ -38,13 +40,12 @@
     font-weight: 600;
     text-shadow: 1px 1px 0px $color-dark-brown;
 
-    @include for-phone {
-      // padding: 1rem 0;
-      // margin-bottom: 1rem;
-      font-size: 1.8rem;
+    &:hover,
+    &:focus {
+      text-decoration: underline;
     }
 
-    @include for-small-phone {
+    @include for-phone {
       font-size: 1.6rem;
     }
 

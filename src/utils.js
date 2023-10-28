@@ -11,7 +11,8 @@ export function eventTargetInsideButtonOrATag(event) {
   while (targetElement != null) {
     if (
       targetElement.nodeName.toLowerCase() === "button" ||
-      targetElement.nodeName.toLowerCase() === "a"
+      targetElement.nodeName.toLowerCase() === "a" ||
+      targetElement.nodeName.toLowerCase() === "input"
     ) {
       return true;
     }
@@ -20,4 +21,13 @@ export function eventTargetInsideButtonOrATag(event) {
   }
 
   return false;
+}
+
+const currencyFormatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+});
+
+export function getPriceInUSD(amount) {
+  return currencyFormatter.format(amount);
 }
